@@ -56,7 +56,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        // for some reason, admin.posts.show doesn't work, but I may just be dumb
+        return response()->view('posts.show', compact('post'));
     }
 
     /**
