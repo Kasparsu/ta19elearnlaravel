@@ -4,13 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+/**
+ * @method static LengthAwarePaginator paginate(int $i=15)
+ */
 
 /**
  * @method static paginate()
  */
 class Post extends Model
 {
+
     use HasFactory;
+
+    protected $fillable = ['title', 'body', 'id'];
 
     public function getSnippetAttribute(){
         $paragraphs = explode("\n\n", $this->body);
