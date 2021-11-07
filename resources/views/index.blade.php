@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'Home Page')
 @section('content')
-    {{$posts->links()}}
+    {{ $posts -> links() }}
     <div class="row row-cols-4">
         @foreach($posts as $post)
             <div class="col">
@@ -16,5 +16,5 @@
             </div>
         @endforeach
     </div>
-    {{$posts->links()}}
+    {{ $posts -> links() }}
 @endsection

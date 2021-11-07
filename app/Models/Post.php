@@ -10,6 +10,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
  * @method static LengthAwarePaginator paginate(int $i=15)
  */
 
+/**
+ * @method static paginate()
+ */
 class Post extends Model
 {
 
