@@ -19,7 +19,7 @@
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
                         <td>
-                            <a class="btn btn-primary">View</a>
+                            <a class="btn btn-primary" href="/admin/posts/{{$post->id}}">View</a>
                             <a class="btn btn-warning">Edit</a>
                             <a class="btn btn-danger">Delete</a>
                         </td>
