@@ -52,11 +52,11 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responsep
      */
     public function show(Post $post)
     {
-        //
+        return response()->view('posts.show', compact('post'));
     }
 
     /**
