@@ -17,6 +17,10 @@ class Post extends Model
 
     protected $fillable = ['title', 'body', 'id'];
 
+    public function image() {
+        return $this->hasOne(Image::class);
+    }
+
     public function getSnippetAttribute(){
         $paragraphs = explode("\n\n", $this->body);
         return $paragraphs[0];

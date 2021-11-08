@@ -21,4 +21,7 @@ Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts.
 Route::get('/admin/posts/create', [PostController::class, 'create'])->name('admin.posts.create');
 Route::get('/admin/posts/{post}', [PostController::class, 'show'])->name('admin.posts.show');
 Route::post('/admin/posts', [PostController::class, 'store'])->name('admin.posts.store');
+Route::get('/admin/posts/{post}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
+Route::post('/admin/posts/{post}', [PostController::class, 'update'])->name('admin.posts.update');
+Route::get('/admin/posts/{post}/delete', [PostController::class, 'destroy'])->name('admin.posts.destroy');
 
