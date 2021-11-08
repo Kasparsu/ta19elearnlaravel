@@ -42,6 +42,9 @@ class PostController extends Controller
 //            'body' => 'required',
 //        ]);
         $post = new Post($request->validated());
+        $image = $request->validated('image');
+        $path = $image->store();
+        $post->image_path = Storage::url($path);
 //        $post->title = $request->input('title');
 //        $post->body = $request->input('body');
         $post->save();
@@ -67,7 +70,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return respone()->view('posts.edit', compact('post'));
     }
 
     /**
@@ -77,9 +80,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(CreatePostRequest $request, Post $post)
     {
-        //
+        $post->updatel($request->validated());
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -90,6 +94,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index');
     }
 }
