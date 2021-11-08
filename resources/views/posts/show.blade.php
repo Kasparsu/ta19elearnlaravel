@@ -3,21 +3,26 @@
 @section('content')
     <a class="btn btn-primary" href="{{url()->previous()}}">Back</a>
     <table class="table table-striped">
-        <thead>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Body</th>
-        <th>Created At</th>
-        <th>Updated At</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $post->id }}</td>
-                <td>{{ $post->title }}</td>
-                <td>{{ $post->body }}</td>
-                <td>{{ $post->created_at }}</td>
-                <td>{{ $post->updated_at }}</td>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <td>{{ $post->id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ $post->title }}</td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>{{ $post->body }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ $post->created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ $post->updated_at }}</td>
+        </tr>
         </tbody>
     </table>
 @endsection
