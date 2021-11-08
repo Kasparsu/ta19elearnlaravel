@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use function Symfony\Component\String\s;
 
 class PostController extends Controller
 {
@@ -42,6 +45,10 @@ class PostController extends Controller
 //            'body' => 'required',
 //        ]);
         $post = new Post($request->validated());
+        /** @var UploadedFile $image */
+        $image = $request->validated()['image'];
+        $path = $image->store('public');
+        $path->image_path = Storage::url($path);
 //        $post->title = $request->input('title');
 //        $post->body = $request->input('body');
         $post->save();
@@ -67,7 +74,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return response()->view('posts.edit', compact('post'));
     }
 
     /**
@@ -79,7 +86,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+//        $post->fill($request->validated());
+//        $post->save();
+        $post->update($request->validated());
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -90,6 +100,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index');
     }
 }
