@@ -19,9 +19,9 @@
                         <td>{{ $post->created_at }}</td>
                         <td>{{ $post->updated_at }}</td>
                         <td>
-                            <a class="btn btn-primary" href="/admin/posts/{{$post->id}}">View</a>
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger">Delete</a>
+                            <a class="btn btn-primary" href="{{route('admin.posts.show', ['post'=>$post->id])}}">View</a>
+                            <a class="btn btn-warning" href="{{route('admin.posts.edit', ['post'=>$post->id])}}">Edit</a>
+                            <a class="btn btn-danger" href="{{route('admin.posts.destroy', ['post'=>$post->id])}}">Delete</a>
                         </td>
                     </tr>
                 @endforeach

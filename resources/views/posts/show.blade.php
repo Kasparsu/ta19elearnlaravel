@@ -4,11 +4,11 @@
     <a class="btn btn-primary" href="{{url()->previous()}}">Back</a>
     <table class="table table-striped">
         <thead>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Body</th>
-        <th>Created At</th>
-        <th>Updated At</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Created At</th>
+            <th>Updated At</th>
         </thead>
         <tbody>
             <tr>
