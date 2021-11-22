@@ -5,22 +5,22 @@
     <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         @error('title')
-            @foreach($errors->get('title') as $error)
-                <div class="alert alert-danger" role="alert">
-                    {{$error}}
-                </div>
-            @endforeach
+        @foreach($errors->get('title') as $error)
+            <div class="alert alert-danger" role="alert">
+                {{$error}}
+            </div>
+        @endforeach
         @enderror
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" name="title" required value="{{old('title')}}">
         </div>
         @error('body')
-            @foreach($errors->get('body') as $error)
-                <div class="alert alert-danger" role="alert">
-                    {{$error}}
-                </div>
-            @endforeach
+        @foreach($errors->get('body') as $error)
+            <div class="alert alert-danger" role="alert">
+                {{$error}}
+            </div>
+        @endforeach
         @enderror
         <div class="mb-3">
             <label for="body" class="form-label">Content</label>
@@ -35,9 +35,10 @@
         @endforeach
         @enderror
         <div class="mb-3">
-            <label for="body" class="form-label">Content</label>
-            <input type="file" class="form-control" id="image" name="image" accept="image/*"> </input>
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="image[]" multiple accept="image/*">
         </div>
+
         <input class="btn btn-primary" type="submit">
     </form>
 @endsection

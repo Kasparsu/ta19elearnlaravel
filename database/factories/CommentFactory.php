@@ -2,27 +2,27 @@
 
 namespace Database\Factories;
 
-use App\Models\Image;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ImageFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Image::class;
+    protected $model = Comment::class;
 
     /**
-     * Define the model's default statae.
+     * Define the model's default state.
      *
      * @return array
      */
     public function definition()
     {
         return [
-            'path' => 'https://picsum.photos/seed/' . $this->faker->uuid . '/1280/720'
+            //
         ];
     }
 }

@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\PostBelongsToAuth;
 use App\Http\Requests\CreatePostRequest;
+use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use function Symfony\Component\String\s;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware(PostBelongsToAuth::class)->only(['show', 'edit','update', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
+        $posts = auth()->user()->posts()->paginate();
         return response()->view('posts.index', compact('posts'));
     }
 
@@ -45,13 +50,17 @@ class PostController extends Controller
 //            'body' => 'required',
 //        ]);
         $post = new Post($request->validated());
-        /** @var UploadedFile $image */
-        $image = $request->validated()['image'];
-        $path = $image->store('public');
-        $path->image_path = Storage::url($path);
+        $post->save();
+        foreach($request->validated()['image'] as $image) {
+            /** @var UploadedFile $image */
+            $path = $image->store('public');
+            $img = new Image();
+            $img->path = Storage::url($path);
+            $img->post()->associate($post);
+            $img->save();
+        }
 //        $post->title = $request->input('title');
 //        $post->body = $request->input('body');
-        $post->save();
         return redirect()->route('admin.posts.index');
     }
 
@@ -63,7 +72,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return response()->view('posts.show', compact('post'));
+        //
     }
 
     /**
@@ -84,7 +93,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(CreatePostRequest $request, Post $post)
     {
 //        $post->fill($request->validated());
 //        $post->save();

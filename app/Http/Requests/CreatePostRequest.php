@@ -13,7 +13,7 @@ class CreatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return request()->route('post')->user->id === auth()->user()->id;
     }
 
     /**
@@ -26,7 +26,7 @@ class CreatePostRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'body' => 'required',
-            'image' =>'image'
+            'image.*' => 'image'
         ];
     }
 }
