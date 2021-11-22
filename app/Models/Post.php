@@ -30,6 +30,11 @@ class Post extends Model
         return $paragraphs[0];
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function getDisplayBodyAttribute(){
         return nl2br($this->body);
     }

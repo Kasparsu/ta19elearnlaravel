@@ -13,4 +13,14 @@
             <p class="card-text">{!! $post->displayBody !!}</p>
         </div>
     </div>
+    <h3>Comments</h3>
+
+    <input type="text" class="form-control" id="title" name="title" required value="{{old('title')}}">
+    <a class="btn btn-primary" href="{{route('posts.store', ['post'=> $post->id])}}">Submit</a>
+
+    @foreach ($post->comments as $comment)
+        <p>{{ $comment->user->name }} {{$comment->created_at}}</p>
+        <p>{{ $comment->body }}</p>
+        <hr>
+    @endforeach
 @endsection

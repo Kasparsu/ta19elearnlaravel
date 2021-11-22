@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/admin/posts/{post}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
     Route::post('/admin/posts/{post}', [PostController::class, 'update'])->name('admin.posts.update');
     Route::get('/admin/posts/{post}/delete', [PostController::class, 'destroy'])->name('admin.posts.destroy');
+    Route::get('/posts/{post}', [CommentController::class, 'store'])->name('posts.store');
+    Route::resource('comments', 'CommentController');
 
     Route::get('/user/profile', function() {
         return view('profile');
