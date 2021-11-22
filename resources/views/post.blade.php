@@ -3,10 +3,22 @@
 @section('content')
     <a class="btn btn-primary" href="{{url()->previous()}}">Back</a>
     <div class="card mt-3">
-        {{--                <img src="..." class="card-img-top" alt="...">--}}
+        @if($post->images->count() > 1)
+            @include('partials.carousel', ['images' => $post->images, 'id' => $post->id])
+        @elseif($post->images->count() == 1)
+            <img src="{{$post->images->first()->path}}" class="card-img-top" alt="...">
+        @endif
         <div class="card-body">
             <h5 class="card-title">{{$post->title}}</h5>
             <p class="card-text">{!! $post->displayBody !!}</p>
         </div>
     </div>
+    @foreach($post->comments as $comment)
+        <div class="card mt-3">
+            <div class="card-body">
+                <h6 class="card-title">{{$comment->user->name}}</h6>
+                <p class="card-text">{{$comment->displayBody}}</p>
+            </div>
+        </div>
+    @endforeach
 @endsection

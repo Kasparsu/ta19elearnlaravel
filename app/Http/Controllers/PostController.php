@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\PostBelongsToAuth;
 use App\Http\Requests\CreatePostRequest;
+use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -10,6 +12,10 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    public function construct(){
+        $this->middleware(PostBelongsToAuth::class)->only(['show', 'edit', 'update', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
+        $posts = auth()->user()->posts()->paginate();
         return response()->view('posts.index', compact('posts'));
     }
 
@@ -44,13 +50,21 @@ class PostController extends Controller
 //            'body' => 'required',
 //        ]);
         $post = new Post($request->validated());
-        /** @var UploadedFile $image */
-        $image = $request->validated()['image'];
-        $path = $image->store('public');
-        $post->image_path = Storage::url($path);
+        $post->user()->associate(auth()->user());
+        $post->save();
+        if($request->validated()['image']) {
+            foreach ($request->validated()['image'] as $image) {
+                /** @var UploadedFile $image */
+                $image = $request->validated()['image'];
+                $path = $image->store('public');
+                $img = new Image();
+                $img->path = Storage::url($path);
+                $img->post()->associate($post);
+                $img->save();
+            }
+        }
 //        $post->title = $request->input('title');
 //        $post->body = $request->input('body');
-        $post->save();
         return redirect()->route('admin.posts.index');
     }
 

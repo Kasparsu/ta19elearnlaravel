@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -14,6 +15,9 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory(1000)->create();
+        Post::factory(1000)->make()->each(function (Post $post) {
+           $post->user()->associate(User::inRandomOrder()->first());
+           $post->save();
+        });
     }
 }
