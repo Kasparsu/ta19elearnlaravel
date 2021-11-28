@@ -24,7 +24,8 @@ class commentController extends Controller
             'post_id' => $post->id
         ]);
 
-        return redirect()->route('posts.store', $post->id);
+
+        return redirect()->route('admin.posts.comment', $post->id);
     }
 
     /**

@@ -23,8 +23,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'body' => $this->faker->paragraphs(10, true),
-            'image_path' => 'https://picsum.photos/seed/'. $this->faker->uuid. "/1280/720/"
+            'body' => $this->faker->paragraphs(10, true)
         ];
     }
 }

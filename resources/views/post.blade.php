@@ -16,7 +16,7 @@
     <h3>Comments</h3>
 
     <input type="text" class="form-control" id="title" name="title" required value="{{old('title')}}">
-    <a class="btn btn-primary" href="{{route('posts.store', ['post'=> $post->id])}}">Submit</a>
+    <a class="btn btn-primary" href="{{route('admin.posts.comment', ['post'=> $post->id])}}", method="POST">Submit</a>
 
     @foreach ($post->comments as $comment)
         <p>{{ $comment->user->name }} {{$comment->created_at}}</p>
