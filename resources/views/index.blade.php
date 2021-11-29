@@ -15,6 +15,8 @@
                         <h5 class="card-title">{{$post->title}}</h5>
                         <p class="card-text">{{$post->snippet}}</p>
                         <p class="text-muted">{{$post->user->name}}</p>
+                        <p class="text-muted">Comments: {{$post->comments->count()}}</p>
+                        <p class="text-muted">{{$post->created_at->diffForHumans()}}</p>
                         <a href="/post/{{$post->id}}" class="btn btn-primary">Read more!</a>
                     </div>
                 </div>

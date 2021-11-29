@@ -13,14 +13,23 @@
             <p class="card-text">{!! $post->displayBody !!}</p>
         </div>
     </div>
+
     <h3>Comments</h3>
-
-    <input type="text" class="form-control" id="title" name="title" required value="{{old('title')}}">
-    <a class="btn btn-primary" href="{{route('admin.posts.comment', ['post'=> $post->id])}}", method="POST">Submit</a>
-
+    <div class="card my-2">
+        <div class="card-body">
+            <form action="{{route('comments.store', ['post'=> $post->id])}}" method="POST">
+            @csrf
+            <textarea class="form-control" name="body" cols="6"></textarea>
+            <input type="submit" class="btn btn-primary">
+        </form>
+        </div>
+    </div>
     @foreach ($post->comments as $comment)
-        <p>{{ $comment->user->name }} {{$comment->created_at}}</p>
-        <p>{{ $comment->body }}</p>
-        <hr>
+        <div class="card my-2">
+            <div class="card-body">
+                <p class="card-text">{{$comment->body}}</p>
+                <p class="text-muted">{{$comment->user->name}}</p>
+            </div>
+        </div>
     @endforeach
 @endsection

@@ -21,9 +21,17 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+
+        $created = $this->faker->dateTimeBetween('-10 years');
+        $updated = $this->faker->dateTimeBetween($created);
+        if(rand(0,3)){
+            $updated = $created;
+        }
         return [
             'title' => $this->faker->sentence,
-            'body' => $this->faker->paragraphs(10, true)
+            'body' => $this->faker->paragraphs(10, true),
+            'created_at' => $this->faker->dateTimeBetween('-10 years'),
+            'updated_at' => $this->faker->dateTimeBetween('-10 years')
         ];
     }
 }
