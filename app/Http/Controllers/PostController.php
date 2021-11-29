@@ -58,6 +58,7 @@ class PostController extends Controller
             $img->path = Storage::url($path);
             $img->post()->associate($post);
             $img->save();
+
         }
 //        $post->title = $request->input('title');
 //        $post->body = $request->input('body');
