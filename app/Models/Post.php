@@ -38,4 +38,7 @@ class Post extends Model
     public function getDisplayBodyAttribute(){
         return nl2br($this->body);
     }
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }
