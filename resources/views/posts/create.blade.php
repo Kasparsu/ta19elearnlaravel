@@ -2,7 +2,7 @@
 @section('title', 'Posts')
 @section('content')
     <a href="{{url()->previous()}}" class="btn btn-primary mb-3">Back</a>
-    <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.posts.store')}}" method="POST">
         @csrf
         @error('title')
             @foreach($errors->get('title') as $error)
@@ -25,18 +25,6 @@
         <div class="mb-3">
             <label for="body" class="form-label">Content</label>
             <textarea class="form-control" id="body" rows="3" name="body" required>{{old('body')}}</textarea>
-        </div>
-
-        @error('image')
-        @foreach($errors->get('image') as $error)
-            <div class="alert alert-danger" role="alert">
-                {{$error}}
-            </div>
-        @endforeach
-        @enderror
-        <div class="mb-3">
-            <label for="body" class="form-label">Content</label>
-            <input type="file" class="form-control" id="image" name="image" accept="image/*"> </input>
         </div>
         <input class="btn btn-primary" type="submit">
     </form>
