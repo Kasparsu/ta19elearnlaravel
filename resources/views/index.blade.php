@@ -1,6 +1,7 @@
 @extends('layout')
 @section('title', 'Home Page')
 @section('content')
+    @include('partials.user')
     {{$posts->links()}}
     <div class="row row-cols-4">
         @foreach($posts as $post)
@@ -14,7 +15,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$post->title}}</h5>
                         <p class="card-text">{{$post->snippet}}</p>
-                        <p class="text-muted">{{$post->user->name}}</p>
+                        {{--                        <a class="text-muted">{{$post->user->name}}</a>--}}
+                        <a href="{{route('user', ['user' => $post->user])}}">{{$post->user->name}}</a>
                         <p class="text-muted">{{$post->created_at->diffForHumans()}}</p>
                         <p>
                             @foreach($post->tags as $tag)
