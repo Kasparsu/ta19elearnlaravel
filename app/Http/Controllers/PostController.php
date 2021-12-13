@@ -50,18 +50,14 @@ class PostController extends Controller
 //            'body' => 'required',
 //        ]);
         $post = new Post($request->validated());
-        $post->User()->associate(auth()->user());
         $post->save();
-        if ($request->validated()['image']) {
-            foreach($request->validated()['image'] as $image) {
-                /** @var UploadedFile $image */
-                $path = $image->store('public');
-                $img = new Image();
-                $img->path = Storage::url($path);
-                $img->post()->associate($post);
-                $img->save();
-        }
-
+        foreach($request->validated()['image'] as $image) {
+            /** @var UploadedFile $image */
+            $path = $image->store('public');
+            $img = new Image();
+            $img->path = Storage::url($path);
+            $img->post()->associate($post);
+            $img->save();
         }
 //        $post->title = $request->input('title');
 //        $post->body = $request->input('body');

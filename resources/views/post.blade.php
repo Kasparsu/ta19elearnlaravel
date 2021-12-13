@@ -12,20 +12,11 @@
             <h5 class="card-title">{{$post->title}}</h5>
             <p class="card-text">{!! $post->displayBody !!}</p>
         </div>
-            <div class="card my-2">
-                <div class="card-body">
-                    <form action="{{route(comments.store, ['post' => $post->id])}}" method="POST">
-                        @csrf
-                        <
-                    </form>
+            <div class="card mt-3">
+                @if($post->comments as $comment)
+                    @include('partials.carousel', ['images' => $post->images, 'id' => $post->id])
+                @elseif($post->images->count() == 1)
+                    <img src="{{$post->images->first()->path}}" class="card-img-top" alt="...">
+
     </div>
-    @foreach($post->comments()->latest()->get() as $comment)
-        <div class="card my-2">
-            <div class="card-body">
-                <p class="card-text">{{$comment->body}}</p>
-                <p class="text-muted">{{$comment->user->name}}</p>
-                <p class="text-muted">{{$comment->created_at->diffForHumans()}}</p>
-            </div>
-        </div>
-    @endforeach
 @endsection

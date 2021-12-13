@@ -33,15 +33,9 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(Request $request)
     {
-        $comment = new Comment();
-        $comment->body = $request->input('body');
-        $comment->user()->associate(auth()->user());
-        $comment->post()->associate($post);
-        $comment->save();
-        return back();
-
+        //
     }
 
     /**
