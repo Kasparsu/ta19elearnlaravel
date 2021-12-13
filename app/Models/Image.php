@@ -8,7 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
-    Public function post() {
-        return $this->belongsTo(Post::class);
-    }
 }
