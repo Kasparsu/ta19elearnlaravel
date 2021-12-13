@@ -13,11 +13,21 @@
             <p class="card-text">{!! $post->displayBody !!}</p>
         </div>
     </div>
-    @foreach($post->comments as $comment)
-        <div class="card mt-3">
+    <div class="card my-2">
+        <div class="card-body">
+            <form action="{{route('comments.store', ['post' => $post->id])}}" method="POST">
+                @csrf
+                <textarea class="form-control" name="body" cols="6"></textarea>
+                <input type="submit" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+    @foreach($post->comments()->latest()->get() as $comment)
+        <div class="card my-2">
             <div class="card-body">
-                <h6 class="card-title">{{$comment->user->name}}</h6>
-                <p class="card-text">{{$comment->displayBody}}</p>
+                <p class="card-text">{{$comment->body}}</p>
+                <p class="text-muted">{{$comment->user->name}}</p>
+                <p class="text-muted">{{$comment->created_at->diffForHumans()}}</p>
             </div>
         </div>
     @endforeach

@@ -30,6 +30,10 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+
     public function getSnippetAttribute(){
         $paragraphs = explode("\n\n", $this->body);
         return $paragraphs[0];
