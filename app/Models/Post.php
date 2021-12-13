@@ -18,7 +18,7 @@ class Post extends Model
     protected $fillable = ['title', 'body', 'id'];
 
     public function image(){
-        return $this->hasOne(Image::class);
+        return $this->has0ne(Image::class);
     }
 
     public function getSnippetAttribute(){
