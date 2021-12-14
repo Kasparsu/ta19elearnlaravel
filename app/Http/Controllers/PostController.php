@@ -32,6 +32,10 @@ class PostController extends Controller
         return response()->view('posts.index', compact('posts'));
     }
 
+    public function view(Post $post){
+        return response()->view('posts.view', compact('post'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
