@@ -19,8 +19,21 @@ class HomeController extends Controller
     public function post(Post $post) {
         return view('post', compact('post'));
     }
+<<<<<<< Updated upstream
     public function tag(Tag $tag) {
         $posts = $tag->posts()->latest()->paginate(16);
         return view('index', compact('posts'));
     }
+=======
+
+    public function tag(Tag $tag){
+        $posts = $tag->posts()->latest()->paginate(16);
+        return view('index', compact('posts'));
+    }
+
+    public function user(User $user) {
+        $posts = $user->posts()->latest()->paginate(16);
+        return view('user', compact('posts', "user"));
+    }
+>>>>>>> Stashed changes
 }
