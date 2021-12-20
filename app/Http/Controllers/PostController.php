@@ -80,7 +80,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return response()->view('posts.show', compact('post'));
     }
 
     /**
