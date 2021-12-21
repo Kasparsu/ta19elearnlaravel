@@ -6,7 +6,7 @@
         <h1 class="card-text">{{$user->name}}</h1>
         <p class="card-text">Posts: {{$user->posts->count()}}</p>
         <p class="card-text">Comments: {{$user->comments()->count()}}</p>
-        <p class="card-text">User Post Comments: {{$user->postComments->count()}}</p>
+        <p class="card-text">User Post Comments: {{$user->postComments()->count()}}</p>
     </div>
 </div>
     {{$posts->links()}}
