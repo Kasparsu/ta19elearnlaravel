@@ -26,7 +26,6 @@ class CommentFactory extends Factory
         if(rand(0,3)){
             $updated = $created;
         }
-
         return [
             'body' => $this->faker->sentence,
             'created_at' => $created,

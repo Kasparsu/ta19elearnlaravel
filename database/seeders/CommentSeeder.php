@@ -21,16 +21,21 @@ class CommentSeeder extends Seeder
         $users = User::all();
         $faker = Factory::create();
         foreach ($posts as $post){
+//           $comments = Comment::factory(rand(0,10))->make(['post_id' => $post->id]);
+//           foreach ($comments as $comment){
+//               $comment->user_id = $users->random()->id;
+//               $comment->save();
+//           }
             Comment::factory(rand(0,10))->make(['post_id' => $post->id])
-                ->each(function ($comment) use($users, $post, $faker){
-                $comment->user_id = $users->random()->id;
-                $comment->created_at = $faker->dateTimeBetween($post->created_at, 'now');
-                $comment->updated_at = $faker->dateTimeBetween($comment->created_at, 'now');
-                if(rand(0,3)){
-                    $comment->updated_at = $comment->created_at;
-                }
-                $comment->save();
-            });
+                ->each(function ($comment) use ($users, $post, $faker){
+                    $comment->user_id = $users->random()->id;
+                    $comment->created_at = $faker->dateTimeBetween($post->created_at, 'now');
+                    $comment->updated_at = $faker->dateTimeBetween($comment->created_at, 'now');
+                    if(rand(0,3)){
+                        $comment->updated_at = $comment->created_at;
+                    }
+                    $comment->save();
+                });
         }
     }
 }

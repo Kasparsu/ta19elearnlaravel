@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index(){
         $posts = Post::latest()->paginate(16);
         return view('index', compact('posts'));
     }
@@ -21,14 +21,12 @@ class HomeController extends Controller
     public function post(Post $post) {
         return view('post', compact('post'));
     }
-
-    public function tag(Tag $tag) {
+    public function tag(Tag $tag){
         $posts = $tag->posts()->latest()->paginate(16);
         return view('index', compact('posts'));
     }
-
-    public function user(User $user) {
-        $posts = $user->posts()->latest()->paginate(16);
-        return view('user', compact('posts', 'user'));
+    public function user(User $user){
+        $posts = $user->posts()->paginate();
+        return response()->view('index', compact('posts', 'user'));
     }
 }

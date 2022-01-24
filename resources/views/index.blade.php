@@ -1,6 +1,16 @@
 @extends('layout')
 @section('title', 'Home Page')
 @section('content')
+    @isset($user)
+        <div class="card">
+            <div class="card-body">
+                <h1>{{$user->name}}</h1>
+                <p><b>Posts:</b>{{$user->posts()->count()}}</p>
+                <p><b>Comments:</b>{{$user->comments()->count()}}</p>
+                <p><b>Comments on Posts:</b>{{$user->commentsOnPosts()->count()}}</p>
+            </div>
+        </div>
+    @endif
     {{$posts->links()}}
     <div class="row row-cols-4">
         @foreach($posts as $post)

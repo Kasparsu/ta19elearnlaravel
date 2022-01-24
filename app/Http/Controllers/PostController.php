@@ -12,8 +12,12 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function construct(){
-        $this->middleware(PostBelongsToAuth::class)->only(['show', 'edit', 'update', 'destroy']);
+    public function apiPosts(){
+        return Post::with('images')->paginate();
+    }
+
+    public function __construct(){
+        $this->middleware(PostBelongsToAuth::class)->only(['show', 'edit','update', 'destroy']);
     }
 
     /**
@@ -97,7 +101,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(CreatePostRequest $request, Post $post)
     {
 //        $post->fill($request->validated());
 //        $post->save();

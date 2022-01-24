@@ -26,7 +26,6 @@
             <label for="body" class="form-label">Content</label>
             <textarea class="form-control" id="body" rows="3" name="body" required>{{old('body')}}</textarea>
         </div>
-
         @error('image')
         @foreach($errors->get('image') as $error)
             <div class="alert alert-danger" role="alert">

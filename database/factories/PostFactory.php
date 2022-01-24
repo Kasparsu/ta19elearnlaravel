@@ -26,7 +26,6 @@ class PostFactory extends Factory
         if(rand(0,3)){
             $updated = $created;
         }
-
         return [
             'title' => $this->faker->sentence,
             'body' => $this->faker->paragraphs(10, true),
