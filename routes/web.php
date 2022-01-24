@@ -3,7 +3,6 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +21,6 @@ Route::get('/post/{post}', [HomeController::class, 'post']);
 Route::get('/tag/{tag}', [HomeController::class, 'tag'])->name('tag');
 Route::get('/user/{user}', [HomeController::class, 'user'])->name('user');
 
-
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin/posts', [PostController::class, 'index'])->name('admin.posts.index');
     Route::get('/admin/posts/create', [PostController::class, 'create'])->name('admin.posts.create');
@@ -30,7 +28,6 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/admin/posts/{post}/edit', [PostController::class, 'edit'])->name('admin.posts.edit');
     Route::post('/admin/posts/{post}', [PostController::class, 'update'])->name('admin.posts.update');
     Route::get('/admin/posts/{post}/delete', [PostController::class, 'destroy'])->name('admin.posts.destroy');
-    Route::get('/admin/posts/{post}', [PostController::class, 'show'])->name('admin.posts.show');
     Route::post('/post/{post}/comment', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/user/profile', function() {
         return view('profile');
