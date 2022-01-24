@@ -25,8 +25,16 @@ class HomeController extends Controller
         $posts = $tag->posts()->latest()->paginate(16);
         return view('index', compact('posts'));
     }
+<<<<<<< HEAD
     public function user(User $user){
         $posts = $user->posts()->paginate();
         return response()->view('index', compact('posts', 'user'));
     }
 }
+=======
+    public function user(User $user) {
+        $posts = $user->posts()->latest()->paginate(16);
+        return view('user.user', compact('posts', "user"));
+    }
+}
+>>>>>>> 1f69dde92b34846ce29925126cce831d70154826
