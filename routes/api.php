@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('posts', [\App\Http\Controllers\PostController::class, 'apiPosts']);
 
 Route::any('proxy/{path}', [\App\Http\Controllers\ApiController::class, 'proxy'])->where('path', '.*');
+Route::get('polling', [\App\Http\Controllers\ApiController::class, 'polling']);
 
+Route::get('longpolling', [\App\Http\Controllers\ApiController::class, 'longpolling']);
 
 
