@@ -14,7 +14,7 @@ class XkcdScraper extends Command
      *
      * @var string
      */
-    protected $signature = 'scrape:xkcd';
+    protected $signature = 'scraper:xkcd';
 
     /**
      * The console command description.

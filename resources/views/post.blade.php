@@ -28,7 +28,6 @@
                 <p class="card-text">{{$comment->body}}</p>
                 <p class="text-muted">{{$comment->user->name}}</p>
                 <p class="text-muted">{{$comment->created_at->diffForHumans()}}</p>
-
             </div>
         </div>
     @endforeach

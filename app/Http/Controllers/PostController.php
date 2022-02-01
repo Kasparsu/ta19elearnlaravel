@@ -16,7 +16,6 @@ class PostController extends Controller
         return Post::with('images')->paginate();
     }
 
-
     public function __construct(){
         $this->middleware(PostBelongsToAuth::class)->only(['show', 'edit','update', 'destroy']);
     }
@@ -60,6 +59,7 @@ class PostController extends Controller
         if($request->validated()['image']) {
             foreach ($request->validated()['image'] as $image) {
                 /** @var UploadedFile $image */
+                $image = $request->validated()['image'];
                 $path = $image->store('public');
                 $img = new Image();
                 $img->path = Storage::url($path);
@@ -80,7 +80,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return response()->view('posts.show', compact('post'));
     }
 
     /**

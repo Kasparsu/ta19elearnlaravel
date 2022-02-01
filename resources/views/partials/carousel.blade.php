@@ -1,9 +1,9 @@
 <div id="slide-{{$id}}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="0">
     <div class="carousel-inner">
         @foreach($images as $key=>$image)
-        <div class="carousel-item {{ $key==0 ? 'active' : '' }}">
-            <img src="{{$image->path}}" class="d-block w-100" alt="...">
-        </div>
+            <div class="carousel-item {{ $key==0 ? 'active' : '' }}">
+                <img src="{{$image->path}}" class="d-block w-100" alt="...">
+            </div>
         @endforeach
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#slide-{{$id}}" data-bs-slide="prev">

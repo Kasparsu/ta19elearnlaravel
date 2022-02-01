@@ -20,6 +20,7 @@ namespace App\Models{
  * @property int $post_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $display_body
  * @property-read \App\Models\Post $post
  * @property-read \App\Models\User $user
  * @method static \Database\Factories\CommentFactory factory(...$parameters)

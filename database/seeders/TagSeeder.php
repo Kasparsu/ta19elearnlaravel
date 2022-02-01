@@ -18,7 +18,7 @@ class TagSeeder extends Seeder
         $tags = Tag::factory(10)->create();
         $posts = Post::all();
         foreach ($posts as $post){
-            foreach($tags->shuffle()->take(rand(0,5)) as $tag){
+            foreach ($tags->shuffle()->take(rand(0,5)) as $tag){
                 $post->tags()->attach($tag);
             }
         }
